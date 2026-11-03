@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Consulta individual de devoluciones y solucionario del Final Previo de Análisis Instrumental.">
+  <title>Final Previo | Análisis Instrumental · UADE</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#183047;background:#f4f7f8;font-synthesis:none;}
+    *{box-sizing:border-box}body{margin:0;font-size:15px;line-height:1.55}
+    button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.65}
+    .topline{height:5px;background:linear-gradient(90deg,#116f78 0%,#2b9b96 56%,#aecfba 100%)}
+    .header{background:#fff;border-bottom:1px solid #dce6e9}
+    .head-inner{max-width:1100px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:13px}.brand-mark{height:42px;min-width:55px;display:grid;place-items:center;border-radius:9px;background:#17384d;color:#fff;font-size:18px;font-weight:700;letter-spacing:-1px}
+    .brand strong{display:block;font-size:16px;line-height:1.3}.brand small{display:block;color:#647480;font-size:12px}
+    .exam-date{color:#60717b;font-size:12px;text-align:right}
+    main{max-width:1000px;margin:0 auto;padding:34px 24px 80px}
+    .login{max-width:575px;margin:32px auto 0;background:#fff;border:1px solid #dce6e9;border-radius:15px;box-shadow:0 12px 38px #243e5220;padding:34px 35px}
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.8px;color:#147779;text-transform:uppercase}
+    h1{font-size:clamp(25px,4vw,34px);line-height:1.17;margin:10px 0 16px;letter-spacing:-.75px;color:#193449}
+    h2{font-size:22px;letter-spacing:-.3px}h3{font-size:17px;margin-top:0}
+    p{margin:0 0 14px}.muted{color:#586c7a}.small{font-size:12px}.login p{color:#596b77}
+    label{display:block;font-weight:700;margin:25px 0 9px}input{width:100%;border:1.5px solid #bbcbd2;border-radius:9px;padding:14px 16px;font-size:20px;letter-spacing:2px;outline:0}
+    input:focus{border-color:#147e80;box-shadow:0 0 0 3px #147e8025}
+    .button{border:0;padding:13px 18px;border-radius:9px;background:#176e75;color:#fff;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+    .button:hover{background:#10595f}.button-secondary{background:#eff5f6;color:#1b4854;border:1px solid #d6e2e7}.button-secondary:hover{background:#e0eced}
+    .login .button{width:100%;margin-top:16px}.status{font-size:13px;color:#9b3838;min-height:22px;margin-top:11px}
+    .hint{margin-top:20px;padding-top:18px;border-top:1px solid #e4eaed;color:#657581;font-size:12px}
+    .dashboard-top{display:flex;justify-content:space-between;align-items:start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .dashboard-top h1{margin-bottom:8px}.student-line{color:#526674}.student-line strong{color:#183047}
+    .nav{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 25px;border-bottom:1px solid #d9e3e8;padding-bottom:14px}
+    .nav .button{min-width:160px}.nav .button[aria-current="page"]{background:#184e63;color:#fff}
+    .panel{background:#fff;border:1px solid #dce6e9;border-radius:13px;padding:27px 30px;margin-bottom:20px}
+    .choose-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .choice{border:1.5px solid #d8e4e7;border-radius:13px;background:#fff;text-align:left;padding:27px 24px;min-height:180px;transition:transform .15s,border-color .15s,box-shadow .15s}
+    .choice:hover{transform:translateY(-2px);border-color:#1a8a89;box-shadow:0 8px 24px #224a5a17}
+    .choice strong{display:block;font-size:19px;color:#193b4f;margin:9px 0 9px}.choice span{display:block;color:#5c6e7b;font-size:14px}.choice-icon{font-size:27px;font-weight:700;color:#157b7e}
+    .score-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:24px 0}
+    .score-cell{border:1px solid #dfe8eb;border-radius:9px;padding:16px;background:#f8fafb}.score-cell .number{font-size:27px;color:#193e51;font-weight:700}.score-cell .caption{font-size:12px;color:#60747d}
+    .exercise{border:1px solid #dbe5e9;border-radius:10px;margin:14px 0;overflow:hidden}
+    .exercise summary{list-style:none;cursor:pointer;padding:17px 19px;background:#f5f9fa;display:flex;justify-content:space-between;gap:15px;align-items:center;font-weight:700;color:#18394b}
+    .exercise summary::-webkit-details-marker{display:none}.exercise summary::after{content:'▾';font-size:16px;order:3;color:#6d818d}
+    .exercise[open] summary::after{content:'▴'}.exercise .inside{padding:5px 20px 9px}
+    .item{border-bottom:1px solid #e6eef0;padding:15px 0}.item:last-child{border-bottom:0}
+    .item-label{font-weight:700;color:#1c4656;display:flex;justify-content:space-between;gap:10px;margin-bottom:5px}
+    .item p{margin:4px 0;font-size:14px}.item .expected{color:#526a77;font-size:13px;background:#f5f8f9;padding:10px 11px;border-left:3px solid #b7d8d6;border-radius:3px}
+    .info-row{margin:10px 0;padding-left:14px;border-left:3px solid #d0e4e3}.action-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0 19px}
+    .solution-meta{margin:0 0 16px;color:#5e7280}.solution-reader{width:100%;height:min(77vh,930px);min-height:520px;border:1px solid #dbe7e9;border-radius:10px;background:#f1f5f6;display:block}
+    footer{max-width:1000px;margin:0 auto;padding:20px 24px 30px;border-top:1px solid #dce6e9;font-size:12px;color:#667784}
+    [hidden]{display:none!important}
+    @media(max-width:700px){main{padding:18px 14px 55px}.head-inner{padding:14px}.exam-date{display:none}.login{margin:16px auto 0;padding:27px 20px}.panel{padding:22px 17px}.choose-grid{grid-template-columns:1fr}.score-bar{gap:7px}.score-cell{padding:12px 8px}.score-cell .number{font-size:22px}.nav .button{min-width:0}.solution-reader{height:68vh;min-height:440px}.item-label{flex-wrap:wrap}}
+    @media print{.header,.nav,.action-row,footer,.choice,button{display:none!important}main{padding:0}.panel{border:0;padding:0}.exercise{break-inside:avoid}.exercise .inside{display:block!important}}
+  </style>
+</head>
+<body>
+<div class="topline"></div>
+<header class="header"><div class="head-inner">
+  <div class="brand"><div class="brand-mark" aria-hidden="true">UADE</div><div><strong>Análisis Instrumental</strong><small>Examen Final Previo · Consulta académica</small></div></div>
+  <div class="exam-date">Evaluación del 2 de noviembre de 2026<br>Universidad Argentina de la Empresa</div>
+</div></header>
+<main>
+  <section id="loginView" class="login" aria-labelledby="welcomeTitle">
+    <div class="eyebrow">Consulta individual</div>
+    <h1 id="welcomeTitle">Tus resultados y devolución</h1>
+    <p>Ingresá tu número de legajo para consultar la devolución de tu examen o leer el solucionario completo, con todas las consignas desarrolladas.</p>
+    <form id="loginForm" autocomplete="off">
+      <label for="legajo">Número de legajo</label>
+      <input id="legajo" name="legajo" type="text" inputmode="numeric" pattern="[0-9]{7}" minlength="7" maxlength="7" placeholder="Ej.: 1234567" autocomplete="off" required aria-describedby="errorMsg">
+      <button type="submit" class="button" id="loginButton">Ingresar a la consulta</button>
+      <div class="status" id="errorMsg" role="status" aria-live="polite"></div>
+    </form>
+    <div class="hint">Usá únicamente tu legajo. La consulta está organizada por estudiante y el solucionario es común a todos los que rindieron.</div>
+  </section>
+  <div id="studentView" hidden>
+    <div class="dashboard-top">
+      <div><div class="eyebrow">Final Previo · 2026</div><h1>Consulta de examen</h1><div class="student-line"><strong id="studentName"></strong><span id="studentId"></span></div></div>
+      <button class="button button-secondary" id="logoutButton">Salir de la consulta</button>
+    </div>
+    <nav class="nav" aria-label="Opciones de consulta">
+      <button class="button button-secondary" id="navHome">Inicio</button>
+      <button class="button button-secondary" id="navFeedback">Mi devolución</button>
+      <button class="button button-secondary" id="navSolution">Examen resuelto</button>
+    </nav>
+    <section id="chooseView">
+      <h2>¿Qué querés consultar?</h2>
+      <p class="muted">Podés cambiar entre las dos secciones sin volver a ingresar tu legajo.</p>
+      <div class="choose-grid">
+        <button class="choice" id="chooseFeedback"><div class="choice-icon">01</div><strong>Mi devolución individual</strong><span>Puntajes, observaciones por subítem, recomendaciones de estudio y descarga en PDF.</span></button>
+        <button class="choice" id="chooseSolution"><div class="choice-icon">02</div><strong>Examen completo resuelto</strong><span>Solucionario con ecuaciones y símbolos químicos correctamente compuestos. Disponible en PDF.</span></button>
+      </div>
+    </section>
+    <section id="feedbackView" hidden>
+      <div class="panel">
+        <div class="eyebrow">Devolución personalizada</div><h2 id="feedbackName">Resultado de examen</h2>
+        <div class="score-bar"><div class="score-cell"><div class="number" id="scoreValue">—</div><div class="caption">Puntaje /100</div></div><div class="score-cell"><div class="number" id="gradeValue">—</div><div class="caption">Calificación</div></div><div class="score-cell"><div class="number" id="stateValue" style="font-size:18px;padding-top:7px">—</div><div class="caption">Condición</div></div></div>
+        <div class="action-row"><button id="downloadPdf" class="button">Descargar mi devolución (PDF)</button><span class="small muted">Archivo individual con el detalle completo de la corrección.</span></div>
+        <h3>Evaluación general</h3><p id="summaryText"></p>
+        <h3>Prioridades para estudiar</h3><p id="prioritiesText" class="muted"></p>
+      </div>
+      <div class="panel"><h2>Corrección por ejercicio</h2><p class="muted">Abrí cada ejercicio para ver todos los subítems, los puntos reconocidos, las observaciones y la resolución de referencia.</p><div id="exerciseList"></div></div>
+    </section>
+    <section id="solutionView" hidden>
+      <div class="panel">
+        <div class="eyebrow">Material común de consulta</div>
+        <h2>Examen completo resuelto</h2>
+        <p class="solution-meta">Solucionario académico con fórmulas matemáticas, ecuaciones químicas, tablas y resultados destacados. Incluye los cinco ejercicios y sus 18 apartados.</p>
+        <div class="action-row">
+          <a class="button" href="solucionario.pdf" download="Solucionario_Final_Previo_2026.pdf" style="text-decoration:none">Descargar solucionario (PDF)</a>
+          <a class="button button-secondary" href="solucionario.pdf" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Abrir en otra pestaña</a>
+        </div>
+        <iframe class="solution-reader" src="solucionario.pdf#toolbar=1&navpanes=0" title="Solucionario completo del Final Previo en PDF" loading="lazy"></iframe>
+        <p class="small muted" style="margin-top:12px">Si tu dispositivo no muestra el documento integrado, utilizá «Abrir en otra pestaña» o «Descargar solucionario (PDF)».</p>
+      </div>
+    </section>
+  </div>
+</main>
+<footer>UADE · Análisis Instrumental · Final Previo 2026 · Documento de consulta académica. Calificación mínima aprobatoria: 60/100.</footer>
+<script>
+'use strict';
+const SITE_NONCE='590ffca1f3a5691cc4f8a7e5f2422af1';
+const e=id=>document.getElementById(id);
+const sections={home:e('chooseView'),feedback:e('feedbackView'),solution:e('solutionView')};
+let current=null;
+const names={1:'Métodos de calibración',2:'Potenciometría',3:'Conductimetría',4:'Electrodos y respuesta potenciométrica',5:'HPLC y fluorescencia'};
+const fmt=n=>Number(n).toLocaleString('es-AR',{maximumFractionDigits:1});
+function textNode(tag,content,cls){let z=document.createElement(tag);z.textContent=String(content??'');if(cls)z.className=cls;return z}
+function b64arr(s){let binary=atob(s),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return bytes}
+function hex(a){return Array.from(new Uint8Array(a)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function recordFile(legajo){let digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SITE_NONCE+':'+legajo));return './records/'+hex(digest).slice(0,40)+'.json'}
+async function decodeRecord(legajo){
+  if(!crypto?.subtle)throw Error('Tu navegador no permite esta consulta en este entorno. Abrí el sitio publicado mediante HTTPS.');
+  const path=await recordFile(legajo),resp=await fetch(path,{cache:'no-store'});
+  if(!resp.ok)throw Error('No se encontró una devolución para ese legajo. Verificá el número e intentá nuevamente.');
+  const enc=await resp.json();
+  const material=await crypto.subtle.importKey('raw',new TextEncoder().encode(legajo),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64arr(enc.salt),iterations:350000,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['decrypt']);
+  try {const decoded=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64arr(enc.iv),additionalData:new TextEncoder().encode('UADE-FinalPrevio-2026')},key,b64arr(enc.data));return JSON.parse(new TextDecoder().decode(decoded))}
+  catch(_){throw Error('No se pudo verificar ese legajo. Comprobá el número ingresado.')}
+}
+function show(mode){
+ for(const [k,v] of Object.entries(sections))v.hidden=(k!==mode);
+ const nav={home:e('navHome'),feedback:e('navFeedback'),solution:e('navSolution')};
+ for(const [k,b] of Object.entries(nav)){if(k===mode)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')}
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function drawFeedback(s){
+ e('feedbackName').textContent=s.nombre;
+ e('scoreValue').textContent=fmt(s.puntaje_total);e('gradeValue').textContent=String(s.nota);
+ e('stateValue').textContent=s.estado;e('summaryText').textContent=s.resumen;e('prioritiesText').textContent=s.prioridades;
+ const holder=e('exerciseList');holder.replaceChildren();
+ for(const ex of s.ejercicios){
+  const box=document.createElement('details');box.className='exercise';if(ex.numero===1)box.open=true;
+  const head=document.createElement('summary');head.append(textNode('span',`${ex.numero}. ${names[ex.numero]}`),textNode('span',`${fmt(ex.puntaje)} / ${fmt(ex.maximo)} pts.`));box.appendChild(head);
+  const inside=document.createElement('div');inside.className='inside';
+  for(const item of ex.items){
+    const itemEl=document.createElement('div');itemEl.className='item';
+    const lab=document.createElement('div');lab.className='item-label';lab.append(textNode('span',`Apartado ${item.codigo}`),textNode('span',`${fmt(item.puntaje)}/${fmt(item.maximo)} puntos`));
+    itemEl.append(lab,textNode('p',item.observacion));
+    if(item.referencia)itemEl.append(textNode('p',item.referencia,'expected'));
+    inside.appendChild(itemEl);
+  }
+  box.appendChild(inside);holder.appendChild(box);
+ }
+}
+e('loginForm').addEventListener('submit',async ev=>{
+ ev.preventDefault();const id=e('legajo').value.trim();e('errorMsg').textContent='';
+ if(!/^\d{7}$/.test(id)){e('errorMsg').textContent='Ingresá un legajo válido de siete dígitos.';return}
+ e('loginButton').disabled=true;e('loginButton').textContent='Consultando…';
+ try{current=await decodeRecord(id);e('studentName').textContent=current.student.nombre;e('studentId').textContent=' · Legajo '+current.student.legajo;drawFeedback(current.student);e('loginView').hidden=true;e('studentView').hidden=false;show('home');e('legajo').value=''}
+ catch(error){e('errorMsg').textContent=error.message||'No se pudo realizar la consulta.'}
+ finally{e('loginButton').disabled=false;e('loginButton').textContent='Ingresar a la consulta'}
+});
+e('logoutButton').addEventListener('click',()=>{current=null;e('studentView').hidden=true;e('loginView').hidden=false;e('studentName').textContent='';e('exerciseList').replaceChildren();e('legajo').focus();window.scrollTo({top:0})});
+e('navHome').addEventListener('click',()=>show('home'));e('navFeedback').addEventListener('click',()=>show('feedback'));e('navSolution').addEventListener('click',()=>show('solution'));
+e('chooseFeedback').addEventListener('click',()=>show('feedback'));e('chooseSolution').addEventListener('click',()=>show('solution'));
+e('downloadPdf').addEventListener('click',()=>{
+ if(!current)return;const bytes=b64arr(current.pdf_base64);const blob=new Blob([bytes],{type:'application/pdf'});const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='Devolucion_Analisis_Instrumental_'+current.student.legajo+'.pdf';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);
+});
+</script>
+</body>
+</html>
